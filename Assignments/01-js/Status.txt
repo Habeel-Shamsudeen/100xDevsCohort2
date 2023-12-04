@@ -1,0 +1,15 @@
+Assignment Status
+
+EASY
+    1.anagram 
+    2.expenditure-analysis 
+    3.FindthelargestElement (completed)
+
+Medium
+    1.countVowels
+    2.palindrome
+    3.times
+
+Hard
+    1.Calculator
+    2.todo-List
