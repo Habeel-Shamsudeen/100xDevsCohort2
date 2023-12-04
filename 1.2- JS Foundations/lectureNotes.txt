@@ -1,0 +1,4 @@
+cluster model in js look it up (basically make js multitheaded ig)
+sub routines in golang go through
+
+Note: try to do the assignments given in the slides when free
