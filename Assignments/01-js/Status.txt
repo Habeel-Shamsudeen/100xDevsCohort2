@@ -6,8 +6,8 @@ EASY
     3.FindthelargestElement (completed)
 
 Medium
-    1.countVowels
-    2.palindrome
+    1.countVowels (completed)
+    2.palindrome (completed)
     3.times
 
 Hard

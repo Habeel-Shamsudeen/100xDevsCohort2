@@ -6,7 +6,7 @@ Contents
 ASSIGNMENTS:
         ->01.JS
                 -easy (completed)
-                -medium
+                -medium (in progress)
                 -hard
                 -tests
                 -ReadME
