@@ -1,8 +1,8 @@
 Assignment Status
 
 EASY
-    1.anagram 
-    2.expenditure-analysis 
+    1.anagram (completed)
+    2.expenditure-analysis (completed)
     3.FindthelargestElement (completed)
 
 Medium
