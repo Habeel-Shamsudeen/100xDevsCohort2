@@ -9,9 +9,17 @@ There is no automated test for this one, this is more for you to understand time
 */
 
 function calculateTime(n) {
+    const beforeTime=new Date();
+    const beforeTimeInMs=beforeTime.getTime(); //get time in ms 
+    // gives the amount of time passed in ms after 1970
     let sum=0;
-    for(let i=1;i<=100;i++){
+    for(let i=1;i<=n;i++){
         sum+=i;
     }
+    const afterTime=new Date();
+    const afterTimeInMs=afterTime.getTime();
+    console.log(afterTimeInMs-beforeTimeInMs);
     return 0.01;
 }
+
+calculateTime(100000000)
