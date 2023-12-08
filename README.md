@@ -21,10 +21,10 @@ Week 0: .0:Prerequesite Js
 
 Week 1: .1:Orientation 
 
-        .2:->JS Foundation 1
+        .2:->JS Foundation 1 (Online)
 	        Basic JS syntax, arrays, objects, functions, callBack functions, setTimeout...
 
-        .3:->JS Foundation 2
+        .3:->JS Foundation 2 (Offline)
                 Level 1
                         1.Strings
                         2.Numbers
@@ -36,5 +36,7 @@ Week 1: .1:Orientation
                         4.Math
                         5.Objects
         
-        .4:->JS Foundation 3
+        .4:->JS Foundation 3 (Offline)
                 loops, Functions, callBack, Anonymous Functions
+
+        .5
