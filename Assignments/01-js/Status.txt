@@ -11,5 +11,5 @@ Medium
     3.times (completed)
 
 Hard
-    1.Calculator
+    1.Calculator (completed)
     2.todo-List
