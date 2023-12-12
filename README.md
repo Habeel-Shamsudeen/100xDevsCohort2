@@ -7,7 +7,7 @@ ASSIGNMENTS:
         ->01:JS
                 -easy (completed)
                 -medium (Completed)
-                -hard (inProgess)
+                -hard (completed)
                 -tests
                 -ReadME
                 -Status

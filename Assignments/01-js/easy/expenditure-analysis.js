@@ -14,7 +14,6 @@ function calculateTotalSpentByCategory(transactions) {
     //let index=checkCat(result,transCat);
     let index=result.findIndex(obj=> obj.category===transCat); // I think here obj acts like each element of result it is the argument of the arrow function
     // function is run for each element in the array with obj(array element as argument)
-    console.log(index);
     if(index>-1){
       result[index].totalSpent+=transPrice;
     }else{

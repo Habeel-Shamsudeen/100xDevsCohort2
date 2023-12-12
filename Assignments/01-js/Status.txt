@@ -12,4 +12,4 @@ Medium
 
 Hard
     1.Calculator (completed)
-    2.todo-List
+    2.todo-List (completed)
