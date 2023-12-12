@@ -4,10 +4,10 @@ This repo consists of all the Assignments, projects and  classwork that I comple
 Contents
 
 ASSIGNMENTS:
-        ->01:JS
-                -easy (completed)
-                -medium (Completed)
-                -hard (completed)
+        ->01:JS (Completed)
+                -easy 
+                -medium
+                -hard 
                 -tests
                 -ReadME
                 -Status
