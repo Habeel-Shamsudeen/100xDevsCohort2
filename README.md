@@ -39,4 +39,7 @@ Week 1: .1:Orientation
         .4:->JS Foundation 3 (Offline)
                 loops, Functions, callBack, Anonymous Functions
 
-        .5
+        .5:->JS Foundation 4 Async (Offline)
+                Async, Await, Promises (offline)
+
+Week 2:
