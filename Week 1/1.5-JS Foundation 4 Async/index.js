@@ -50,22 +50,39 @@
 
 
 //gist-4 promises
-const fs = require('fs');
-
+//const fs = require('fs');
 // my own asynchronous function
-function kiratsReadFile() {
-    console.log("inside kiratsReadfile");
-  return new Promise(function(resolve) {
-    console.log("inside promise");
-    fs.readFile("test.txt", "utf-8", function(err, data) {
-        console.log("before resolve");
-      resolve(data);
-    });
-  })
-}
-// callback function to call
-function onDone(data) {
-  console.log(data)
+// function kiratsReadFile() {
+//     console.log("inside kiratsReadfile");
+//   return new Promise(function(resolve) {
+//     console.log("inside promise");
+//     fs.readFile("test.txt", "utf-8", function(err, data) {
+//         console.log("before resolve");
+//       resolve(data);
+//     });
+//   })
+// }
+// // callback function to call
+// function onDone(data) {
+//   console.log(data)
+// }
+
+// kiratsReadFile().then(onDone);
+
+//gist-8 async await
+function kiratsAsyncFunction() {
+  let p = new Promise(function(resolve) {
+    // do some async logic here
+    setTimeout(()=>{
+      resolve("hi there!");
+    },2000)
+  });
+  return p;
 }
 
-kiratsReadFile().then(onDone);
+async function main() {
+  const value = await kiratsAsyncFunction();
+  console.log(value);
+}
+
+main();
