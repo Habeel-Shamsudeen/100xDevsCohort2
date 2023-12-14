@@ -3,15 +3,6 @@ This repo consists of all the Assignments, projects and  classwork that I comple
 
 Contents
 
-ASSIGNMENTS:
-        ->01:JS (Completed)
-                -easy 
-                -medium
-                -hard 
-                -tests
-                -ReadME
-                -Status
-
 Week 0: .0:Prerequesite Js
         ->Basic js
                 variable declaration, loops, if-else, switch, data types.
@@ -26,20 +17,21 @@ Week 1: .1:Orientation
 
         .3:->JS Foundation 2 (Offline)
                 Level 1
-                        1.Strings
-                        2.Numbers
-                        3.Arrays
+                        Strings,Numbers,Arrays
                 Level 2
-                        1.Class
-                        2.Date
-                        3.JSON
-                        4.Math
-                        5.Objects
+                        Class,Date,JSON,Math,Objects
         
         .4:->JS Foundation 3 (Offline)
                 loops, Functions, callBack, Anonymous Functions
 
         .5:->JS Foundation 4 Async (Offline)
-                Async, Await, Promises (offline)
+                Async, Await, Promises
+
+        .6:->Assignments
 
 Week 2:
+        .1:->Async-Await-Promises
+        
+        .2:->Assignments
+              .1-async-js
+              .2-node-js  
