@@ -1,0 +1,6 @@
+Try When you get time
+
+
+create an http server from scratch using c
+create a todo application where you store data in a file
+create a rust/golang/java http server
