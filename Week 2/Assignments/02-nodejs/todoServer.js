@@ -181,11 +181,11 @@ app.delete("/todos/:id", (req, res) => {
   });
 });
 
-app.use((req, res, next) => {
+app.all('*',(req, res) => {
   res.status(404).send();
 });
 
-app.listen(3000,()=>{
-  console.log("listening to 3000");
-})
+// app.listen(3000,()=>{
+//   console.log("listening to 3000");
+// })
 module.exports = app;
