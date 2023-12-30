@@ -67,8 +67,8 @@ This repository serves as a comprehensive collection of all the assignments, pro
 #### Assignments
 - .1-async-js
 - .2-node-js
- - todoServer
- - fileServer
+   - todoServer
+   - fileServer
 
 ### Week 3:
 
