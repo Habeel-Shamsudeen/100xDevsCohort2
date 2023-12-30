@@ -1,9 +1,10 @@
-# 100xDevs-Cohort-2
-This repo consists of all the Assignments, projects and  classwork that I complete throught the cohort
+<h1> 100xDevs-Cohort-2</h1>
+<br>
+<p>This repo consists of all the Assignments, projects and  classwork that I complete throught the cohort<p>
+<br>
+<h2>Contents</h2>
 
-Contents
-
-Week 0: .0:Prerequesite Js
+<h3>Week 0:</h3> <h4>.0:Prerequesite Js</h4>
         ->Basic js
                 variable declaration, loops, if-else, switch, data types.
 
