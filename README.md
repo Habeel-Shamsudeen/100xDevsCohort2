@@ -74,6 +74,8 @@ This repository serves as a comprehensive collection of all the assignments, pro
 
 #### 3.1: Middlewares, Global catches and zod
 
+#### 3.2:Databases and Authentication JWT
+
 #### Assignments
 - .1-middlewares
 - .2-jwt
