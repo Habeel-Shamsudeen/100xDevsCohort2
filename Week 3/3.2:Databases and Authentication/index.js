@@ -73,7 +73,7 @@ app.get("/users", function (req, res) {
 
 // const mongoose = require("mongoose");
 // mongoose.connect(
-//   "mongodb+srv://habeelshamsudeen:MuyLHszKZTPsVi9I@cluster0.lyi1r5n.mongodb.net/"
+//   "your db url"
 // );
 // const User = mongoose.model("users", {
 //   name: String,
