@@ -72,10 +72,9 @@ const app = express();
 // });
 
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt"); //library to hash password
 mongoose
-  .connect(
-    "your mongoDB URL/User_app"
-  )
+  .connect("Your mongoDB url/User_app")
   .then(() => console.log("mongoDB connected"))
   .catch((err) => {
     console.log("Mongo Error " + err);
@@ -102,9 +101,13 @@ async function userExists(username, password) {
   // should check in the database
   const existingUser = await User.findOne({
     username: username,
-    password: password,
   });
-  return !!existingUser;
+  if (existingUser) {
+    const passwordMatch = await bcrypt.compare(password, existingUser.password);
+    return !!passwordMatch;
+  } else {
+    return false;
+  }
 }
 
 async function userExists(username) {
@@ -118,14 +121,12 @@ app.post("/signin", async (req, res) => {
   const password = req.body.password;
 
   if (!(await userExists(username, password))) {
-    return res
-      .status(403)
-      .json({
-        msg: "Username and Password do not Match or User doesnt exist",
-      });
+    return res.status(403).json({
+      msg: "Username and Password do not Match or User doesnt exist",
+    });
   }
 
-  var token = jwt.sign({ username: username },jwtPassword);
+  var token = jwt.sign({ username: username }, jwtPassword);
   return res.json({
     token,
   });
@@ -140,16 +141,17 @@ app.post("/signup", async (req, res) => {
       msg: "Username already exist",
     });
   } else {
+    const hashedPassword = await bcrypt.hash(password, 10); //10 salt to be added
     const user = new User({
       name: name,
       username: username,
-      password,
-      password,
+      password: hashedPassword, //hashed password is stored in database
     });
-    user.save().then(() => console.log(username + " added to mongoDB"));
-    res
-      .status(201)
-      .send(username + " Created");
+    user
+      .save()
+      .then(() => console.log(username + " added to mongoDB"))
+      .catch((error) => console.error("Error saving user:", error));
+    res.status(201).send(username + " Created");
   }
 });
 
@@ -164,7 +166,7 @@ app.get("/users", async function (req, res) {
       return !(obj.username === username);
     });
     console.log(finalUsers);
-    res.json({user:finalUsers});
+    res.json({ user: finalUsers });
   } catch (err) {
     return res.status(403).json({
       msg: "Invalid token",
