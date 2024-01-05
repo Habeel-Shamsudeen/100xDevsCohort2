@@ -57,13 +57,8 @@ function verifyJwt(token) {
  */
 function decodeJwt(token) {
     // Your code here
-    try{
-        const decoded = jwt.decode(token);
-        return !!decoded;
-    }catch(err){
-        return false;
-    }
-   
+    const decoded = jwt.decode(token);
+    return !!decoded;
 }
 
 
