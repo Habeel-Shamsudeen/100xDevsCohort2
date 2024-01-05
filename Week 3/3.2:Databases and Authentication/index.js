@@ -74,7 +74,7 @@ const app = express();
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt"); //library to hash password
 mongoose
-  .connect("Your mongoDB url/User_app")
+  .connect("your mondodb URL/User_app")
   .then(() => console.log("mongoDB connected"))
   .catch((err) => {
     console.log("Mongo Error " + err);
@@ -104,13 +104,12 @@ async function userExists(username, password) {
   });
   if (existingUser) {
     const passwordMatch = await bcrypt.compare(password, existingUser.password);
-    return !!passwordMatch;
-  } else {
-    return false;
+    return passwordMatch;
   }
+  return false;
 }
 
-async function userExists(username) {
+async function usernameExists(username) {
   // should check in the database
   const existingUser = await User.findOne({ username: username });
   return !!existingUser;
@@ -136,7 +135,7 @@ app.post("/signup", async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
   const name = req.body.name;
-  if (await userExists(username)) {
+  if (await usernameExists(username)) {
     return res.status(403).json({
       msg: "Username already exist",
     });
