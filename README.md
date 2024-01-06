@@ -79,6 +79,14 @@ This repository serves as a comprehensive collection of all the assignments, pro
 #### Assignments
 - .1-middlewares
 - .2-jwt
+- .3-MongoDB
+- .4-MongoDB with JWT authentication
+
+### Week 4:
+
+#### 4.0: DOM intro Offline
+
+#### 4.1: DOM intro
 
 
 Feel free to explore the specific folders and files associated with each week's content for a detailed understanding. If you have any questions or suggestions, feel free to reach out.
