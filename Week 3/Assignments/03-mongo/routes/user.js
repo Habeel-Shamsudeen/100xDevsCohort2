@@ -36,16 +36,24 @@ router.get("/courses", async (req, res) => {
 
 router.post("/courses/:courseId", userMiddleware, async (req, res) => {
   // Implement course purchase logic
-  const courseId = req.params.courseId;
-  await User.updateOne(
-    {
-      username: req.headers.username,
-    },
-    {
-      purchasedCourses: courseId,
-    }
-  );
+  try{
+    const courseId = req.params.courseId;
+  const courseIdExist=await Course.findById(courseId)
+  if(!!!courseIdExist){
+    res.json({
+      msg:"invalid Course id"
+    })
+    return;
+  }
+  const user=await User.findOne({username:req.headers.username})
+  user.purchasedCourses.push(courseId);
+  await user.save();
   res.json({ message: "Course purchased successfully" });
+  }catch(error){
+    console.error("Error purchasing course:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+  
 });
 
 router.get("/purchasedCourses", userMiddleware, async (req, res) => {
