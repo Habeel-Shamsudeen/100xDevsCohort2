@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+        //debouce
+        //ex in amazon search bar BE call is delayed if the user is typing fast to reduce the number of BE calls
+        //while when we type slow for each key press BE is called is suggestion is displayed but in the first case it waits for the user to pause to send a BE call this is calling deboucing BE api calls
+
+        //sample implementation on debouce function
+        let timeOut;
+        function deboucePolulateDiv(){
+            // delay calling the polulateDiv until ive not been called for 100 milisec
+            // and ive been called atleast once
+            clearTimeout(timeOut) //clear the old clock 
+            const timeOut= setTimeout(()=>{ // start a new for 100 millisec 
+                populateDiv();
+            },100);
+            
+           
+        }
+       function populateDiv() {
+        let a = parseInt(document.getElementById("num1").value);
+        let b = parseInt(document.getElementById("num2").value);
+        const element = document.getElementById("finalSum");
+        let sum= a+b;
+        element.innerHTML="Sum is "+ sum;
+
+        //promise syntax to use fetch
+
+        // fetch("https://sum-server.100xdevs.com/sum?a=" + a + "&b=" + b).then(
+        //   (response) => {
+        //     response.text().then((ans) => {
+        //       element.innerHTML = "Sum is " + ans;
+        //     });
+        //   }
+        // );
+
+        //asyn await syntax
+
+        // const response = await fetch("https://sum-server.100xdevs.com/sum?a=" + a + "&b=" + b);
+        // const ans =await response.text();
+        // element.innerHTML = "Sum is " + ans;
+      }
+    </script>
+  </head>
+  <body>
+    <div>
+      <input type="text" oninput="deboucePolulateDiv()" placeholder="number 1" id="num1" />
+      <br />
+      <br />
+      <input type="text" oninput="deboucePolulateDiv()" placeholder="number 2" id="num2" />
+      <br />
+      <br />
+      <!-- <button onclick="populateDiv()">calculate sum</button> -->
+      <div id="finalSum"></div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        async function calcInterest() {
+        let  p= parseInt(document.getElementById("princiAmt").value);
+        let r = parseInt(document.getElementById("rate").value);
+        let t= parseInt(document.getElementById("time").value);
+        const element = document.getElementById("finalInterest");
+        const response = await fetch("http://localhost:3000/interest?principal=" + p + "&rate=" + r+"&time="+t);
+        const ans =await response.json();
+        element.innerHTML = "Interest is " + ans["interest"]+". Total amount is  "+ans.total;
+        return;
+      }
+    </script>
+</head>
+<body>
+    <div>
+        <input type="text" placeholder="Principle Amount" id="princiAmt" />
+        <br />
+        <br />
+        <input type="text" placeholder="Rate" id="rate" />
+        <br />
+        <br />
+        <input type="text" placeholder="Time" id="time" />
+        <br>
+        <br>
+        <button onclick="calcInterest()">calculate Interest</button>
+        <div id="finalInterest"></div>
+      </div>
+</body>
+</html>
