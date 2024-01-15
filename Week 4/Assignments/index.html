@@ -3,16 +3,31 @@
 
 <head>
   <script>
-    let globalId = 1;
+    let globalId = 0;
     let todoState = [];
     let oldTodoState = [];
 
-    function addTodoToDom() {
-      
+    function addTodoToDom(todos) {
+      const todo = document.createElement("div");
+            const titleDiv = document.createElement("div");
+            titleDiv.innerHTML=todos.title;
+            const descDiv = document.createElement("div");
+            descDiv.innerHTML=todos.description;
+            const addTodoButtn = document.createElement("button");
+            addTodoButtn.innerHTML="Make as Done";
+            addTodoButtn.setAttribute("onclick",`markAsDone(${todos.id})`);
+            todo.appendChild(titleDiv);
+            todo.appendChild(descDiv);
+            todo.appendChild(addTodoButtn);
+            todo.setAttribute("id",todos.id);
+            document.getElementById("todos").appendChild(todo);
     }
 
     function removeTodoFromDom(todo) {
-      
+      const id=todo.id;
+      const parent = document.getElementById("todos");
+      const child = document.getElementById(`${id}`);
+      parent.removeChild(child);
     }
 
     function updateTodoInDom(oldTodo, newTodo) {
@@ -25,13 +40,30 @@
       // 1. added
       // 2. deleted
       // 3. updated
-      const added = [];
-      const deleted = [];
-      const updated = [];
+      console.log(newTodos)
+      console.log(oldTodoState);
+      const added = newTodos.filter((newTodo) => !oldTodoState.some((oldTodo) => newTodo.id === oldTodo.id));
+      const deleted =oldTodoState.filter((oldTodo)=> !newTodos.some((newTodo)=> newTodo.id === oldTodo.id));
+      const updated = newTodos.filter((newTodo)=>{
+        const correspondingOldTodo = oldTodoState.find((oldTodo)=> newTodo.id === oldTodo);
+        return (
+          correspondingOldTodo &&
+          Object.keys(newTodo).some((key) => newTodo[key] !== correspondingOldTodo[key])
+        );
+      });
       // calculate these 3 arrays
       // call addTodo, removeTodo, updateTodo functions on each of the
       // elements
-      oldTodoState = newTodos;
+      added.forEach(todo => {
+        addTodoToDom(todo)
+      });
+      deleted.forEach(todo => {
+        removeTodoFromDom(todo)
+      });
+      updated.forEach(todo => {
+        updateTodoInDom(todo)
+      });
+      oldTodoState = newTodos.filter((Element)=> true); // copy new todolist to old todo list
     }
 
     function addTodo() {
@@ -40,9 +72,18 @@
       todoState.push({
         title: title,
         description: description,
-        id: globalId++,
+        id: ++globalId,
       })
       updateState(todoState);
+    }
+
+    function markAsDone(id){
+      const todoElement = document.getElementById(`${id}`)
+      todoElement.childNodes[2].innerHTML="DONE!";
+      setTimeout(()=>{
+        todoState=todoState.filter((todos)=> todos.id !== id);
+        updateState(todoState)
+      },2000)
     }
   </script>
 </head>
