@@ -18,7 +18,7 @@ function App() {
       done: false,
     };
 
-    setTodos((prevTodos) => [...prevTodos, newTodo]);
+    setTodos((prevTodos) => [...prevTodos, newTodo]); //setTodos is a funtion to updated the state of todos it takes an function as an argument which has the prev state/ as the argument. this function is used to update the state
   }
 
   function markAsDone(id) {
