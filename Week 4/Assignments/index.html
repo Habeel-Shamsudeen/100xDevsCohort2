@@ -11,8 +11,10 @@
       const todo = document.createElement("div");
             const titleDiv = document.createElement("div");
             titleDiv.innerHTML=todos.title;
+            titleDiv.setAttribute("class","title")
             const descDiv = document.createElement("div");
             descDiv.innerHTML=todos.description;
+            descDiv.setAttribute("class","desc")
             const addTodoButtn = document.createElement("button");
             addTodoButtn.innerHTML="Make as Done";
             addTodoButtn.setAttribute("onclick",`markAsDone(${todos.id})`);
@@ -20,6 +22,7 @@
             todo.appendChild(descDiv);
             todo.appendChild(addTodoButtn);
             todo.setAttribute("id",todos.id);
+            todo.setAttribute("class","card");
             document.getElementById("todos").appendChild(todo);
     }
 
@@ -31,7 +34,10 @@
     }
 
     function updateTodoInDom(oldTodo, newTodo) {
-        
+      const id=oldTodo.id;
+      const todoElement = document.getElementById(`${id}`);
+      todoElement.childNodes[0].innerHTML=newTodo.title;
+      todoElement.childNodes[1].innerHTML=newTodo.description;
     }
 
     function updateState(newTodos) {
@@ -45,7 +51,7 @@
       const added = newTodos.filter((newTodo) => !oldTodoState.some((oldTodo) => newTodo.id === oldTodo.id));
       const deleted =oldTodoState.filter((oldTodo)=> !newTodos.some((newTodo)=> newTodo.id === oldTodo.id));
       const updated = newTodos.filter((newTodo)=>{
-        const correspondingOldTodo = oldTodoState.find((oldTodo)=> newTodo.id === oldTodo);
+        const correspondingOldTodo = oldTodoState.find((oldTodo)=> newTodo.id === oldTodo.id);
         return (
           correspondingOldTodo &&
           Object.keys(newTodo).some((key) => newTodo[key] !== correspondingOldTodo[key])
@@ -61,7 +67,8 @@
         removeTodoFromDom(todo)
       });
       updated.forEach(todo => {
-        updateTodoInDom(todo)
+        const correspondingOldTodo=oldTodoState.find((oldTodo)=> todo.id === oldTodo.id);
+        updateTodoInDom(correspondingOldTodo,todo);
       });
       oldTodoState = newTodos.filter((Element)=> true); // copy new todolist to old todo list
     }
@@ -86,15 +93,28 @@
       },2000)
     }
   </script>
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-  <input type="text" id="title" placeholder="Todo title"></input> <br /><br />
-  <input type="text" id="description" placeholder="Todo description"></input> <br /><br />
-  <button onclick="addTodo()">Add todo</button>
-  <br /> <br />
+  <h1 style="text-align: center;">Todo App</h1>
+  <hr>
+  <div class="containerInput">
+    <div class="textInputWrapper">
+      <h3>Todo Title</h3>
+      <input type="text" id="title" placeholder="Todo title"></input>
+    </div>
+     <div class="textInputWrapper">
+      <h3>Todo description</h3>
+      <input type="text" id="description" placeholder="Todo description"></input>
+     </div>
+     <br>
+    <button onclick="addTodo()">Add todo</button>
+  </div>
+  <hr>
 
-  <div id="todos">
+
+  <div id="todos" class="container">
 
   </div>
 </body>
