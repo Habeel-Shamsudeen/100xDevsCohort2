@@ -1,10 +1,11 @@
 import { createTodo, updateTodo } from "./types";
+import { todo, todo } from "./db";
 const express = require("express");
 const app = express();
 const port = 3000;
 app.use(express.json());
 
-app.post("/todo", (req, res) => {
+app.post("/todo", async (req, res) => {
   const createPayLoad = req.body;
   const parsedPayLoad = createTodo.safeParse(createPayLoad);
   if (!parsedPayLoad.success) {
@@ -14,11 +15,25 @@ app.post("/todo", (req, res) => {
     return;
   }
   // put it in mongoDB
+  await todo.create({
+    title: createPayLoad.title,
+    description: createPayLoad.description,
+    completed: false,
+  });
+
+  res.json({
+    msg: "Todo create",
+  });
 });
 
-app.get("/todos", (req, res) => {});
+app.get("/todos", async (req, res) => {
+  const todos = await todo.find();
+  res.json({
+    todos,
+  });
+});
 
-app.put("/completed", (req, res) => {
+app.put("/completed", async (req, res) => {
   const updatePayLoad = req.body;
   const parsedPayLoad = updateTodo.safeParse(updatePayLoad);
   if (!parsedPayLoad.success) {
@@ -27,6 +42,14 @@ app.put("/completed", (req, res) => {
     });
     return;
   }
+  await todo.update(
+    {
+      _id: req.body.id,
+    },
+    {
+      completed: true,
+    }
+  );
 });
 
 app.listen(port, () => {
