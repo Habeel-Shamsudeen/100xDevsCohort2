@@ -1,6 +1,6 @@
-import { createTodo, updateTodo } from "./types";
-import { todo, todo } from "./db";
 const express = require("express");
+const { createTodo, updateTodo } = require("./types");
+const { todo } = require("./db");
 const app = express();
 const port = 3000;
 app.use(express.json());
