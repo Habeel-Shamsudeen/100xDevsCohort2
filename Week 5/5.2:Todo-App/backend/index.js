@@ -61,7 +61,7 @@ app.put("/completed", async (req, res) => {
     await todo.deleteOne({
       _id: req.body.id,
     })
-  },5000)
+  },4000)
 });
 
 
