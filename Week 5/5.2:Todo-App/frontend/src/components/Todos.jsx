@@ -8,10 +8,20 @@
  */
 export function Todos({ todos }) {
   return (
-    <div>
+    <div style={{
+        display:"flex",
+        flexWrap:"wrap",
+        padding: 10,
+        margin: 10,
+    }}>
       {todos.map((todo) => {
         return (
-          <div>
+          <div style={{
+            border:"2px solid black",
+            borderRadius:"5px",
+            padding: 10,
+            margin: 10,
+          }}>
             <div>{todo.title}</div>
             <div>{todo.description}</div>
             <button

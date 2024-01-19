@@ -13,6 +13,7 @@ function App() {
   return (
     <div>
       <CreateTodo />
+      <hr />
       <Todos todos={todos} />
     </div>
   );

@@ -4,7 +4,14 @@ export function CreateTodo() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   return (
-    <div>
+    <div
+      style={{
+        border: "2px solid black",
+        borderRadius: "8px",
+        padding: 10,
+        margin: 10,
+      }}
+    >
       <input
         style={{
           padding: 10,
