@@ -88,6 +88,17 @@ This repository serves as a comprehensive collection of all the assignments, pro
 
 #### 4.1: DOM intro
 
+#### 4.2: React intro
+
+#### Assignments
+
+### Week 5:
+
+#### 5.1: React DeepDive
+
+#### 5.2: End to End React Todo App
+
+#### Assignments
 
 Feel free to explore the specific folders and files associated with each week's content for a detailed understanding. If you have any questions or suggestions, feel free to reach out.
 
