@@ -1,9 +1,15 @@
 const express = require("express");
 const { createTodo, updateTodo } = require("./types");
 const { todo } = require("./db");
+const cors = require("cors");
 const app = express();
 const port = 3000;
 app.use(express.json());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  })
+);
 
 app.post("/todo", async (req, res) => {
   const createPayLoad = req.body;
@@ -42,7 +48,7 @@ app.put("/completed", async (req, res) => {
     });
     return;
   }
-  await todo.update(
+  await todo.updateOne(
     {
       _id: req.body.id,
     },
@@ -50,7 +56,14 @@ app.put("/completed", async (req, res) => {
       completed: true,
     }
   );
+
+  setTimeout(async ()=>{
+    await todo.deleteOne({
+      _id: req.body.id,
+    })
+  },5000)
 });
+
 
 app.listen(port, () => {
   console.log(`listening to ${port}`);
