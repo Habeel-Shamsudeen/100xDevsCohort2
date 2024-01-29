@@ -100,6 +100,22 @@ This repository serves as a comprehensive collection of all the assignments, pro
 
 #### Assignments
 
+### Week 6:
+
+#### 6.1: React Hooks
+
+#### 6.2: useEffect, useCallback, useMemo
+
+#### 6.3: React Hooks recap
+- useEffect, useCallback, useMemo, useRef
+
+#### Assignments
+- 1.useMemo
+- 2.useCallback
+- 3.useRef
+
+### Week 7:
+
 Feel free to explore the specific folders and files associated with each week's content for a detailed understanding. If you have any questions or suggestions, feel free to reach out.
 
 Happy coding!
