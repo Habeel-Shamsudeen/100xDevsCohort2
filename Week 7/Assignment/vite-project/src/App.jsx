@@ -2,17 +2,20 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { Appbar } from "./componenets/AppBar";
+import { RecoilRoot } from "recoil";
 const Assignment4 = lazy(() => import("./componenets/Assignment4"));
-const GitCard = lazy(()=>import("./componenets/GitCard"))
+const GitCard = lazy(() => import("./componenets/GitCard"));
 
 function App() {
   return (
-    <div style={{
-      display:"flex",
-      justifyContent:"center"
-    }}>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
       <BrowserRouter>
-        <Appbar/>
+        <Appbar />
         <Routes>
           <Route
             path="/assignment4"
@@ -22,7 +25,16 @@ function App() {
               </Suspense>
             }
           />
-          <Route path="/assignment5" element={<Suspense fallback={'loading page..'}><GitCard/></Suspense>}/>
+          <Route
+            path="/assignment5"
+            element={
+              <Suspense fallback={"loading page.."}>
+                <RecoilRoot>
+                  <GitCard />
+                </RecoilRoot>
+              </Suspense>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>
