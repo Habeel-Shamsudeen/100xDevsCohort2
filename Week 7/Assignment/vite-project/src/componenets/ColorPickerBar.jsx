@@ -55,14 +55,14 @@ export function ColorPickerBar() {
       <button
         style={{
           color: "white",
-          backgroundColor: "black",
+          backgroundColor: "#333333",
           border: "1px solid black",
           borderRadius: "8px",
           margin: "5px",
           padding: "10px",
           width:"90px"
         }}
-        onClick={() => setColour("black")}
+        onClick={() => setColour("#333333")}
       >
         Black
       </button>
@@ -111,14 +111,14 @@ export function ColorPickerBar() {
       <button
         style={{
           color: "black",
-          backgroundColor: "white",
+          backgroundColor: "orange",
           border: "1px solid black",
           borderRadius: "8px",
           margin: "5px",
           padding: "10px",
           width:"90px",
         }}
-        onClick={() => setColour("white")}
+        onClick={() => setColour("orange")}
       >
         Default
       </button>
