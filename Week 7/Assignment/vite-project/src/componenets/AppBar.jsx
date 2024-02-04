@@ -46,6 +46,21 @@ export function Appbar() {
       >
         Git Profile Card
       </button>
+      <button
+        onClick={() => {
+          navigate("/login");
+        }}
+        style={{
+          color: "white",
+          border: "1px solid black",
+          borderRadius: "8px",
+          margin: "5px",
+          padding: "10px",
+          width: "120px",
+        }}
+      >
+        Login
+      </button>
     </div>
   );
 }

@@ -21,7 +21,8 @@ export function ColorPickerBar() {
           width:"60%",
           display:"flex",
           justifyContent:"center",
-          gap:"10px"
+          gap:"10px",
+          overflow:'hidden'
       }}
     >
       <button
