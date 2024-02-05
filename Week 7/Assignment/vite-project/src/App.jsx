@@ -7,6 +7,7 @@ const Assignment4 = lazy(() => import("./componenets/Assignment4"));
 const GitCard = lazy(() => import("./componenets/GitCard"));
 const LoginCard = lazy(()=> import("./componenets/LoginCard"))
 const Verification = lazy(()=> import("./componenets/Verification")) 
+const BirthCard = lazy(()=> import("./componenets/BirthCard")) 
 
 function App() {
   return (
@@ -53,6 +54,16 @@ function App() {
               <Suspense fallback={"loading page.."}>
                 <RecoilRoot>
                   <Verification/>
+                </RecoilRoot>
+              </Suspense>
+            }
+          />
+          <Route
+            path="/Bday-card-generator"
+            element={
+              <Suspense fallback={"loading page.."}>
+                <RecoilRoot>
+                  <BirthCard/>
                 </RecoilRoot>
               </Suspense>
             }

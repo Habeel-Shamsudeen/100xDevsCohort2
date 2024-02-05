@@ -116,6 +116,12 @@ This repository serves as a comprehensive collection of all the assignments, pro
 
 ### Week 7:
 
+#### 7.1: Routing, PropDrilling
+
+#### 7.2: contextApi, Recoil
+
+#### Assignments
+
 Feel free to explore the specific folders and files associated with each week's content for a detailed understanding. If you have any questions or suggestions, feel free to reach out.
 
 Happy coding!

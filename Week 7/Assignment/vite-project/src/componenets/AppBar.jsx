@@ -61,6 +61,21 @@ export function Appbar() {
       >
         Login
       </button>
+      <button
+        onClick={() => {
+          navigate("/Bday-card-generator");
+        }}
+        style={{
+          color: "white",
+          border: "1px solid black",
+          borderRadius: "8px",
+          margin: "5px",
+          padding: "10px",
+          width: "120px",
+        }}
+      >
+        Birthday Card
+      </button>
     </div>
   );
 }
