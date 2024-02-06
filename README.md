@@ -120,7 +120,11 @@ This repository serves as a comprehensive collection of all the assignments, pro
 
 #### 7.2: contextApi, Recoil
 
+#### 7.3: Recoil Deepdive
+
 #### Assignments
+
+### Week 8:
 
 Feel free to explore the specific folders and files associated with each week's content for a detailed understanding. If you have any questions or suggestions, feel free to reach out.
 
