@@ -126,6 +126,10 @@ This repository serves as a comprehensive collection of all the assignments, pro
 
 ### Week 8:
 
+#### 8.1: Tailwind
+
+#### 8.3: Axios vs Fetch
+
 Feel free to explore the specific folders and files associated with each week's content for a detailed understanding. If you have any questions or suggestions, feel free to reach out.
 
 Happy coding!
