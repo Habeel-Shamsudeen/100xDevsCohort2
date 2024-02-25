@@ -130,6 +130,10 @@ This repository serves as a comprehensive collection of all the assignments, pro
 
 #### 8.3: Axios vs Fetch
 
+### Week 9:
+
+#### 9.1: Custom Hooks
+
 Feel free to explore the specific folders and files associated with each week's content for a detailed understanding. If you have any questions or suggestions, feel free to reach out.
 
 Happy coding!
