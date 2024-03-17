@@ -141,6 +141,10 @@ This repository serves as a comprehensive collection of all the assignments, pro
 #### 10.1: Postgres
 
 #### 10.2: Prisma
+
+### Week 11:
+
+#### 11.1: Serverless
 Feel free to explore the specific folders and files associated with each week's content for a detailed understanding. If you have any questions or suggestions, feel free to reach out.
 
 Happy coding!
