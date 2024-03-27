@@ -69,6 +69,11 @@ export async function signin(c: Context) {
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
+  try {
+    
+  } catch (error) {
+    
+  }
 }
 
 export async function userProfile(c: Context) {}
