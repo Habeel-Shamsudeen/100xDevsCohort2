@@ -32,3 +32,14 @@ Actions: Delete the specified blog post if the authenticated user is the owner. 
 
 ## Database
 Try using `prisma` as the ORM and Postgres as the provider.
+
+
+
+```
+npm install
+npm run dev
+```
+
+```
+npm run deploy
+```
