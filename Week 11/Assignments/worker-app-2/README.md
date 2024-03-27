@@ -1,3 +1,7 @@
+```
+npm install
+npm run dev
+```
 
 ## Advance Blogging app
 Same as the first assignment, but you need to support `tags` for every blog post as well
