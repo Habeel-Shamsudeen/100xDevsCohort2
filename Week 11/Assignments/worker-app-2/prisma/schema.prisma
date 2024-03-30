@@ -29,4 +29,11 @@ model Posts {
   author    User     @relation(fields: [authorId], references: [id])
   authorId  Int
   createdAt DateTime @default(now())
+  tags  Tags[] 
+}
+
+model Tags{
+  id Int @id @default(autoincrement())
+  tag String @unique
+  posts Posts[] 
 }

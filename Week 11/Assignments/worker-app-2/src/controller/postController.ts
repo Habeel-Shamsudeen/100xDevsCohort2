@@ -14,7 +14,7 @@ export async function getAllPosts(c: Context) {
   }).$extends(withAccelerate());
   try {
     const res = await prisma.posts.findMany({
-      include: { author: true },
+      include: { author: true, tags: true },
     });
     if (!res) {
       return c.body(`Unable to fetch data`, StatusCode.NOTFOUND);
@@ -30,6 +30,7 @@ export async function getAllPosts(c: Context) {
         createdAt: posts.createdAt,
         authorName: posts.author.username,
         authorId: posts.authorId,
+        tags: posts.tags.map((tag) => tag.tag),
       })),
     });
   } catch (error) {
@@ -45,16 +46,25 @@ export async function createPost(c: Context) {
     const Blog: {
       title: string;
       body: string;
+      tags: string;
     } = await c.req.json();
     const userId = c.get("userId");
+    const tagName = Blog.tags.split(",").map((tag) => tag.trim());
     const newPost = await prisma.posts.create({
       data: {
         title: Blog.title,
         body: Blog.body,
         authorId: userId,
+        tags: {
+          connectOrCreate: tagName.map((tag) => ({
+            where: { tag },
+            create: { tag },
+          })),
+        },
       },
       include: {
         author: true,
+        tags: true,
       },
     });
     return c.json({
@@ -66,6 +76,7 @@ export async function createPost(c: Context) {
         authorId: newPost.authorId,
         author: newPost.author.username,
         createDate: newPost.createdAt,
+        tags: newPost.tags.map((tag) => tag.tag),
       },
     });
   } catch (error) {
@@ -84,6 +95,7 @@ export async function getPost(c: Context) {
       },
       include: {
         author: true,
+        tags: true,
       },
     });
     if (!post) {
@@ -98,6 +110,7 @@ export async function getPost(c: Context) {
         authorId: post.authorId,
         author: post.author.username,
         createDate: post.createdAt,
+        tags: post.tags.map((tag) => tag.tag),
       },
     });
   } catch (error) {
@@ -113,7 +126,9 @@ export async function updatePost(c: Context) {
     const updatedBlogData: {
       title: string;
       body: string;
+      tags: string;
     } = await c.req.json();
+    const tagName = updatedBlogData.tags.split(",").map((tag) => tag.trim());
     const blogId = Number(c.req.param("id"));
     const authUserId = c.get("userId");
     const oldBlog = await prisma.posts.findFirst({
@@ -137,9 +152,16 @@ export async function updatePost(c: Context) {
       data: {
         title: updatedBlogData.title,
         body: updatedBlogData.body,
+        tags: {
+          connectOrCreate: tagName.map((tag) => ({
+            where: { tag },
+            create: { tag },
+          })),
+        },
       },
       include: {
         author: true,
+        tags:true
       },
     });
     return c.json({
@@ -151,6 +173,7 @@ export async function updatePost(c: Context) {
         authorId: updatedBlog.authorId,
         author: updatedBlog.author.username,
         createDate: updatedBlog.createdAt,
+        tags: updatedBlog.tags.map((tag) => tag.tag),
       },
     });
   } catch (error) {
