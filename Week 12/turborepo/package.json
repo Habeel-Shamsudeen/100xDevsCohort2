@@ -1,15 +1,15 @@
 {
-  "name": "@habee1/common",
+  "name": "turborepo",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "zod": "^3.22.4"
+  "devDependencies": {
+    "turbo": "^1.13.1"
   }
 }
