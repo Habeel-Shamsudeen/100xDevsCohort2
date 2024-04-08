@@ -1,13 +1,17 @@
-import { Hono } from "hono";
+import { Context, Hono } from "hono";
+import { authMiddleware } from "../middleware/authMiddleware";
 
 export const postRouter = new Hono<{
 	Bindings: {
 		DATABASE_URL: string
+    JWT_SECRETE: string
 	}
 }>();
+postRouter.use('/blog/*',authMiddleware);
 
-postRouter.post("/blog", (c) => {
-  return c.text("blog route");
+postRouter.post("/blog", (c:Context) => {
+  
+  return c.text(`${c.get("userId")} blog route`);
 });
 
 postRouter.put("/blog", (c) => {
