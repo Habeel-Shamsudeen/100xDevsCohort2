@@ -1,5 +1,6 @@
 import { Context, Hono } from "hono";
 import { authMiddleware } from "../middleware/authMiddleware";
+import { PostBlog, getAllPost, getPostbyId, updatePost } from "../controller/postController";
 
 export const postRouter = new Hono<{
 	Bindings: {
@@ -7,21 +8,12 @@ export const postRouter = new Hono<{
     JWT_SECRETE: string
 	}
 }>();
-postRouter.use('/blog/*',authMiddleware);
+postRouter.use('/*',authMiddleware);
 
-postRouter.post("/blog", (c:Context) => {
-  
-  return c.text(`${c.get("userId")} blog route`);
-});
+postRouter.post("/",PostBlog);
 
-postRouter.put("/blog", (c) => {
-  return c.text("put blog route");
-});
+postRouter.put("/",updatePost);
 
-postRouter.get("/blog/:id", (c) => {
-  return c.text("get blog/id route");
-});
+postRouter.get("/id/:id",getPostbyId);
 
-postRouter.get("/blog/bulk", (c) => {
-  return c.text("get blog/bulk route");
-});
+postRouter.get("/bulk",getAllPost);

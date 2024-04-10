@@ -16,7 +16,7 @@ export async function signupController(c: Context) {
   try {
     const body = await c.req.json();
 
-    const userExist = await prisma.user.findFirst({
+    const userExist = await prisma.user.findFirst({ //not required as ready a check in db level as db do not allow duplicate email value
       where: {
         email: body.email,
       },
