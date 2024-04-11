@@ -6,7 +6,10 @@ export const postRouter = new Hono<{
 	Bindings: {
 		DATABASE_URL: string
     JWT_SECRETE: string
-	}
+	},
+  Variables:{
+    userId:string
+  }
 }>();
 postRouter.use('/*',authMiddleware);
 
