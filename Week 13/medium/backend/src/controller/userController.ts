@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { Context } from "hono";
 import { Jwt } from "hono/utils/jwt";
+import { signupInput, signinInput } from "@100xdevs/medium-common";
 
 enum StatusCode {
   BADREQ = 400,
@@ -15,7 +16,13 @@ export async function signupController(c: Context) {
   }).$extends(withAccelerate());
   try {
     const body = await c.req.json();
-
+    const {success} = signupInput.safeParse(body);
+    if(!success){
+      c.status(411);
+      return c.json({
+        msg:"Inputs not correct"
+      })
+    }
     const userExist = await prisma.user.findFirst({ //not required as ready a check in db level as db do not allow duplicate email value
       where: {
         email: body.email,
@@ -58,6 +65,13 @@ export async function signinController(c: Context) {
   }).$extends(withAccelerate());
   try {
     const body = await c.req.json();
+    const {success} = signinInput.safeParse(body);
+    if(!success){
+      c.status(411);
+      return c.json({
+        msg:"Inputs not correct"
+      })
+    }
     const user = await prisma.user.findFirst({
       where: {
         email: body.email,

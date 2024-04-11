@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { Context } from "hono";
+import { createBlogInput, updateBlogInput } from "@100xdevs/medium-common";
 
 enum StatusCode {
   BADREQ = 400,
@@ -25,6 +26,13 @@ export async function PostBlog(c: Context) {
   }).$extends(withAccelerate());
   try {
     const body: createPost = await c.req.json();
+    const { success } = createBlogInput.safeParse(body);
+    if (!success) {
+      c.status(411);
+      return c.json({
+        msg: "Inputs not correct",
+      });
+    }
     const newPost = await prisma.post.create({
       data: {
         title: body.title,
@@ -73,6 +81,13 @@ export async function updatePost(c: Context) {
   }).$extends(withAccelerate());
   try {
     const body: updatePost = await c.req.json();
+    // const { success } = updateBlogInput.safeParse(body);
+    // if (!success) {
+    //   c.status(411);
+    //   return c.json({
+    //     msg: "Inputs not correct",
+    //   });
+    // }
     const postExist = await prisma.post.findFirst({
       where: {
         id: body.id,
@@ -100,24 +115,24 @@ export async function updatePost(c: Context) {
 }
 
 export async function getPostbyId(c: Context) {
-    const prisma = new PrismaClient({
-      datasourceUrl: c.env.DATABASE_URL,
-    }).$extends(withAccelerate());
-    try {
-      const postId = c.req.param("id");
-      const post = await prisma.post.findFirst({
-        where: {
-          id: postId,
-        },
-      });
-      if (!post) {
-        return c.text("Invalid Post id", StatusCode.NOTFOUND);
-      }
-      return c.json({
-        msg: "Blog post details",
-        post: post,
-      });
-    } catch (error) {
-      return c.body("BAD REQUEST", StatusCode.BADREQ);
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL,
+  }).$extends(withAccelerate());
+  try {
+    const postId: string = c.req.param("id");
+    const post = await prisma.post.findFirst({
+      where: {
+        id: postId,
+      },
+    });
+    if (!post) {
+      return c.text("Invalid Post id", StatusCode.NOTFOUND);
     }
+    return c.json({
+      msg: "Blog post details",
+      post: post,
+    });
+  } catch (error) {
+    return c.body("BAD REQUEST", StatusCode.BADREQ);
   }
+}
