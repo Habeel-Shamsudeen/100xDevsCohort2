@@ -17,6 +17,7 @@ postRouter.post("/",PostBlog);
 
 postRouter.put("/",updatePost);
 
-postRouter.get("/id/:id",getPostbyId);
-
 postRouter.get("/bulk",getAllPost);
+
+postRouter.get("/:id",getPostbyId);
+

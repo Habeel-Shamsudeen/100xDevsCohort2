@@ -81,13 +81,13 @@ export async function updatePost(c: Context) {
   }).$extends(withAccelerate());
   try {
     const body: updatePost = await c.req.json();
-    // const { success } = updateBlogInput.safeParse(body);
-    // if (!success) {
-    //   c.status(411);
-    //   return c.json({
-    //     msg: "Inputs not correct",
-    //   });
-    // }
+    const { success } = updateBlogInput.safeParse(body);
+    if (!success) {
+      c.status(411);
+      return c.json({
+        msg: "Inputs not correct",
+      });
+    }
     const postExist = await prisma.post.findFirst({
       where: {
         id: body.id,
