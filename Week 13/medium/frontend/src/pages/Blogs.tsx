@@ -1,13 +1,9 @@
-import { useParams } from "react-router-dom";
-import { useBlog } from "../hooks";
 import { Appbar } from "../components/Appbar";
-import { FullBlog } from "../components/FullBlog";
+import { BlogCard } from "../components/BlogCard";
+import { useBlogs } from "../hooks";
 
-export const Blog = () => {
-  const { id } = useParams();
-  const { loading, blog } = useBlog({
-    id: id || "",
-  });
+export const Blogs = () => {
+  const { loading, blogs } = useBlogs();
   if (loading) {
     return (
       <div className="mt-10">
@@ -45,7 +41,16 @@ export const Blog = () => {
         <Appbar />
         <div className="flex justify-center">
           <div>
-            <FullBlog blog={blog}/>
+            {blogs.map((blog) => (
+              <BlogCard
+                id={blog.id}
+                authorName={blog.author}
+                title={blog.title}
+                content={blog.content}
+                publishedDate="12th December 2024"
+                imgTag={blog.title.replace(" ",",")}
+              />
+            ))}
           </div>
         </div>
       </div>

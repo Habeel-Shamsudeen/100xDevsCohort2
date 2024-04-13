@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SigninInput, SignupInput } from "@100xdevs/medium-common";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
@@ -13,12 +13,13 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
     email: "",
     password: "",
   });
-
+  const navigate = useNavigate();
   async function sendSignupRequest(){
     try {
       const response = await axios.post(`${BACKEND_URL}/api/v1/user/signup`,signupInputs);
       const jwt = response.data.token;
       localStorage.setItem("token",jwt);
+      navigate('/blogs');
     } catch (error) {
         alert("Error while signing up");
     }
@@ -29,6 +30,7 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
       const response = await axios.post(`${BACKEND_URL}/api/v1/user/signin`,signinInputs);
       const jwt = response.data.token;
       localStorage.setItem("token",jwt);
+      navigate('/blogs');
     } catch (error) {
         alert("Error while signing in");
     }
@@ -36,7 +38,7 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
 
   return (
     <div className="h-screen flex flex-col justify-center items-center">
-      <div>
+      <div className="rounded-xl bg-slate-200 p-10 py-24 md:bg-white">
         <div className="px-10">
           <div className="text-3xl font-bold max-w-sm text-center">
             {type === "signin"

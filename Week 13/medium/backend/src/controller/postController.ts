@@ -61,14 +61,12 @@ export async function getAllPost(c: Context) {
     });
     return c.json({
       msg: "All Blog Posts",
-      posts: {
-        postDetails: posts.map((post) => ({
-          title: post.title,
-          content: post.content,
-          id: post.id,
-          author: post.author.name,
-        })),
-      },
+      posts: posts.map((post) => ({
+        title: post.title,
+        content: post.content,
+        id: post.id,
+        author: post.author.name,
+      })),
     });
   } catch (error) {
     return c.body("BAD REQUEST", StatusCode.BADREQ);
@@ -124,15 +122,66 @@ export async function getPostbyId(c: Context) {
       where: {
         id: postId,
       },
+      include: {
+        author: true,
+      },
     });
     if (!post) {
       return c.text("Invalid Post id", StatusCode.NOTFOUND);
     }
     return c.json({
       msg: "Blog post details",
-      post: post,
+      post: {
+        title: post.title,
+        content: post.content,
+        id: post.id,
+        author: post.author.name,
+      },
     });
   } catch (error) {
     return c.body("BAD REQUEST", StatusCode.BADREQ);
+  }
+}
+
+export async function deletePost(c: Context) {
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL,
+  }).$extends(withAccelerate());
+  try {
+    const blogId =c.req.param("id");
+    const authUserId = c.get("userId");
+    const oldBlog = await prisma.post.findFirst({
+      where: {
+        id: blogId,
+      },
+    });
+    if (!oldBlog) {
+      return c.body("Blog post not Found", StatusCode.NOTFOUND);
+    }
+    if (authUserId !== oldBlog?.authorId) {
+      return c.body(
+        "User not authorized to delete the selected post",
+        StatusCode.NOTPERMISSIOON
+      );
+    }
+    const deleteBlog = await prisma.post.delete({
+      where: {
+        id: blogId,
+      },
+      include: {
+        author: true,
+      },
+    });
+    return c.json({
+      msg: "Successfully deleted Blog",
+      post: {
+        id: deleteBlog.id,
+        title: deleteBlog.title,
+        authorId: deleteBlog.authorId,
+        author: deleteBlog.author.name,
+      },
+    });
+  } catch (error) {
+    return c.body(`Internal Server error :${error}`, 500);
   }
 }

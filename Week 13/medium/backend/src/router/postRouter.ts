@@ -1,6 +1,6 @@
 import { Context, Hono } from "hono";
 import { authMiddleware } from "../middleware/authMiddleware";
-import { PostBlog, getAllPost, getPostbyId, updatePost } from "../controller/postController";
+import { PostBlog, deletePost, getAllPost, getPostbyId, updatePost } from "../controller/postController";
 
 export const postRouter = new Hono<{
 	Bindings: {
@@ -20,4 +20,6 @@ postRouter.put("/",updatePost);
 postRouter.get("/bulk",getAllPost);
 
 postRouter.get("/:id",getPostbyId);
+
+postRouter.delete("/:id",deletePost);
 
