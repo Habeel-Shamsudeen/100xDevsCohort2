@@ -1,5 +1,6 @@
 import { Appbar } from "../components/Appbar";
 import { BlogCard } from "../components/BlogCard";
+import { Footer } from "../components/Footer";
 import { useBlogs } from "../hooks";
 
 export const Blogs = () => {
@@ -52,8 +53,11 @@ export const Blogs = () => {
               />
             ))}
           </div>
-        </div>
+        </div> 
       </div>
+      <div className="pl-12 my-12">
+        <Footer/> 
+        </div>
     </div>
   );
 };

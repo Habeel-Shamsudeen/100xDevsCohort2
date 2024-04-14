@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useBlog } from "../hooks";
 import { Appbar } from "../components/Appbar";
 import { FullBlog } from "../components/FullBlog";
+import { Footer } from "../components/Footer";
 
 export const Blog = () => {
   const { id } = useParams();
@@ -47,6 +48,10 @@ export const Blog = () => {
           <div>
             <FullBlog blog={blog}/>
           </div>
+        </div>
+        <hr className="border-gray-300 my-8" />
+        <div className="pl-12 mt-12">
+        <Footer/> 
         </div>
       </div>
     </div>
