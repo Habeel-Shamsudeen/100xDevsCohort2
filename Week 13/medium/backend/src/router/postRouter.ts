@@ -1,4 +1,4 @@
-import { Context, Hono } from "hono";
+import { Hono } from "hono";
 import { authMiddleware } from "../middleware/authMiddleware";
 import { PostBlog, deletePost, getAllPost, getPostbyId, updatePost } from "../controller/postController";
 

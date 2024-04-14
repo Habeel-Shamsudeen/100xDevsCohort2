@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { Context } from "hono";
 import { Jwt } from "hono/utils/jwt";
-import { signupInput, signinInput } from "@100xdevs/medium-common";
+import { signupInput, signinInput } from "@habee1_/medium-common";
 
 enum StatusCode {
   BADREQ = 400,

@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { Context } from "hono";
-import { createBlogInput, updateBlogInput } from "@100xdevs/medium-common";
+import { createBlogInput, updateBlogInput } from "@habee1_/medium-common";
 
 enum StatusCode {
   BADREQ = 400,
