@@ -145,6 +145,23 @@ This repository serves as a comprehensive collection of all the assignments, pro
 ### Week 11:
 
 #### 11.1: Serverless
+
+#### 11.2: AWS Deployment
+
+### Week 12:
+
+#### 12.1: TS advances
+
+#### 12.2: intro to monorepo and Publish to NPM
+
+#### Assignments
+
+### Week 13:
+
+#### Project (Medium)
+
+### Week 14:
+
 Feel free to explore the specific folders and files associated with each week's content for a detailed understanding. If you have any questions or suggestions, feel free to reach out.
 
 Happy coding!
