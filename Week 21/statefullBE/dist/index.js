@@ -1,8 +1,6 @@
-import { startLogger } from "./logger";
-import { gameManager } from "./store";
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 // startLogger();
-
 // setInterval(() => {
 //     gameManager.addGame({
 //         id:(Math.random()*10000).toString(),
@@ -11,10 +9,7 @@ import { gameManager } from "./store";
 //         moves: []
 //     })
 // }, 5000)
-
-import { pubsubManager } from "./PubsubManager";
-
+const PubsubManager_1 = require("./PubsubManager");
 setInterval(() => {
-    pubsubManager.userSubscribe(Math.random().toString(), "APPL");
-}, 5000)
-
+    PubsubManager_1.pubsubManager.userSubscribe(Math.random().toString(), "APPL");
+}, 5000);
