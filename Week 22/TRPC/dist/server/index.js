@@ -16,8 +16,14 @@ const todoInputType = zod_1.z.object({
     title: zod_1.z.string(),
     description: zod_1.z.string(),
 });
+const signUpInputType = zod_1.z.object({
+    email: zod_1.z.string(),
+    password: zod_1.z.string(),
+});
 const appRouter = (0, trpc_1.router)({
     createTodo: trpc_1.publicProcedure.input(todoInputType).mutation((otps) => __awaiter(void 0, void 0, void 0, function* () {
+        const userName = otps.ctx.userName;
+        console.log(userName);
         const title = otps.input.title;
         const description = otps.input.description;
         console.log("Hello from TRPC server function");
@@ -25,11 +31,31 @@ const appRouter = (0, trpc_1.router)({
         return {
             id: "1",
             message: "todo creation completed",
-            title
+            title,
+        };
+    })),
+    signUp: trpc_1.publicProcedure.input(signUpInputType).mutation((otps) => __awaiter(void 0, void 0, void 0, function* () {
+        const email = otps.input.email;
+        const password = otps.input.password;
+        // email already exist validation
+        // Do DB stuff add to DB
+        // jwt.sign(userId,secret)
+        let token = "123456"; // JWT token
+        return {
+            token,
+            email,
+            message: "SignUp completed",
         };
     })),
 });
 const server = (0, standalone_1.createHTTPServer)({
     router: appRouter,
+    createContext(otps) {
+        let authHeader = otps.req.headers["authorization"];
+        console.log(authHeader);
+        return {
+            userName: "123",
+        };
+    },
 });
 server.listen(3000);

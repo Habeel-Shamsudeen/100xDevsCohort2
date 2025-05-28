@@ -17,11 +17,23 @@ const trpc = (0, client_1.createTRPCClient)({
     links: [
         (0, client_1.httpBatchLink)({
             url: "http://localhost:3000",
+            headers(opts) {
+                return __awaiter(this, void 0, void 0, function* () {
+                    return {
+                        Authorization: "Bearer 123"
+                    };
+                });
+            },
         }),
     ],
 });
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
+        const signUpResponse = yield trpc.signUp.mutate({
+            email: "habeel@gmail.com",
+            password: "123456",
+        });
+        console.log(signUpResponse.token);
         const response = yield trpc.createTodo.mutate({
             title: "hello TRPC world",
             description: "Introduction to TRPC",

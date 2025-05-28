@@ -8,16 +8,27 @@ const trpc = createTRPCClient<AppRouter>({
   links: [
     httpBatchLink({
       url: "http://localhost:3000",
+      async headers(opts) {
+          return {
+            Authorization :"Bearer 123"
+          }
+      },
     }),
   ],
 });
 
 async function main() {
+  const signUpResponse = await trpc.signUp.mutate({
+    email: "habeel@gmail.com",
+    password: "123456",
+  });
+  console.log(signUpResponse.token);
+
   const response = await trpc.createTodo.mutate({
     title: "hello TRPC world",
     description: "Introduction to TRPC",
   });
-  console.log(response)
+  console.log(response);
 }
 
 main();
