@@ -11,13 +11,16 @@ wss.on("connection", function connection(ws) {
   ws.on("message", function message(data: any) {
     const message = JSON.parse(data);
     if (message.type === "id-as-sender") {
+      console.log("sender Set")
       senderSocket = ws;
     } else if (message.type === "id-as-receiver") {
+      console.log("receiver Set")
       receiverSocket = ws;
     } else if (message.type === "create-offer") {
       if (ws !== senderSocket) {
         return;
       }
+      console.log("Create Offer")
       receiverSocket?.send(
         JSON.stringify({
           type: "offer",
@@ -28,6 +31,7 @@ wss.on("connection", function connection(ws) {
       if (ws !== receiverSocket) {
         return;
       }
+      console.log("Create answer")
       senderSocket?.send(
         JSON.stringify({
           type: "answer",
@@ -35,6 +39,7 @@ wss.on("connection", function connection(ws) {
         })
       );
     } else if (message.type === "add-ice-candidate") {
+      console.log("ice-candidate")
       if (ws === senderSocket) {
         receiverSocket?.send(
           JSON.stringify({
